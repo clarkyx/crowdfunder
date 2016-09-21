@@ -1,0 +1,20 @@
+<%= form_tag session_path do %>
+ <ul class="form1">
+   <li>
+     <%= label_tag '' do %>
+       Email<span class="required">*</span>
+     <% end %>
+     <%= email_field_tag :email %>
+   </li>
+
+  <li>
+       <%= label_tag '' do %>
+         Password<span class="required">*</span>
+       <% end %>
+       <%= password_field_tag :password %>
+  </li>
+
+
+    <li><%= submit_tag "Log in" %></li>
+  </ul>
+  <% end %>

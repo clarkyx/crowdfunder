@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root 'projects#index'
 
   resources :sessions, only: [:index, :new, :create, :destroy]
-  resources :user, only: [:new, :create] do
+  resources :projects
+  resources :users, only: [:new, :create] do
     resources :projects do
       resources :rewards
     end
