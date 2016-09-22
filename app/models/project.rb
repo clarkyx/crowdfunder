@@ -23,7 +23,7 @@ class Project < ApplicationRecord
   end
 
   def startdate_earlier_than_finishdate
-    if finishdate < startdate
+    if finishdate.present? && startdate.present? && finishdate < startdate
       errors.add(:datecompare, "End date must be after start date")
     end
   end
