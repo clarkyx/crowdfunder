@@ -1,9 +1,9 @@
 <% @projects.each do |project| %>
-  <p>Project Title : <%= project.title %></p>
-  <p>Project Description : <%= project.description %></p>
-  <p>Project Goal : <%= project.goal %></p>
-  <p>Project StartTime : <%= project.startdate %></p>
-  <p>Project FinishTime : <%= project.finishdate %></p>
+  <p class="ptitle"><%= project.title %></p>
+  <p class="pdescription"><%= project.description %></p>
+  <p class="pgoal"><%= project.goal %></p>
+  <p class="pstardate"><%= project.startdate %></p>
+  <p class="pfinishdate"><%= project.finishdate %></p>
   <strong>Project TotalPledged : <p id= "earned<%= project.id %>"><%= project.pledges.sum(:amount)  %></p></strong>
   <br>
   <% project.rewards.each do |reward| %>
