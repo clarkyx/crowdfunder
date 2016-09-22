@@ -4,8 +4,7 @@ class CreateRewards < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :description
       t.integer :price
-      t.integer :project_id
-      t.integer :user_id
+      t.belongs_to :project, foreign_key: true
 
       t.timestamps
     end

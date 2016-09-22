@@ -16,7 +16,16 @@
 
   <div class="field">
     <%= f.label :goal %></br>
-    <%= f.number_field :goal %></br></br>
+    <%= f.number_field :goal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category %></br>
+    <%= f.select(:category_id) do %>
+      <%= @category.each do |content| %>
+        <%= content_tag(:option, content.title, value: content.id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <%= f.fields_for :rewards, [Reward.new] do |builder| %>
