@@ -16,6 +16,7 @@
       <p class="pdescription"><%= project.description %></p>
    <% end %>
   <% end %>
+  <p>My Money Pledged: <%= current_user.pledges.sum(:amount) %></p>
 <% else %>
   <% @projects.each do |project| %>
     <p class="ptitle"><%= link_to project.title, project %></p>
