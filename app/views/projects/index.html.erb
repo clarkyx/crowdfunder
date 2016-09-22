@@ -1,4 +1,5 @@
 <% @projects.each do |project| %>
+<fieldset>
   <p>Project Title : <%= project.title %></p>
   <p>Project Description : <%= project.description %></p>
   <p>Project Goal : <%= project.goal %></p>
@@ -13,5 +14,6 @@
     <% end %>
     <p>Description <%= reward.description %></p>
   </fieldset>
+</fieldset>
   <% end %>
 <% end %>

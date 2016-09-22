@@ -7,7 +7,7 @@ class PledgesController < ApplicationController
     @pledge = Pledge.new
     @pledge.user_id = current_user.id
     @pledge.project_id = params['project']
-    @pledge.amount = Reward.find_by('id', params['reward']).price
+    @pledge.amount = Reward.find(params['reward']).price
 
     puts @pledge.project_id
     if @pledge.save!
