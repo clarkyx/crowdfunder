@@ -1,8 +1,15 @@
 <p class="ptitle"><%= @project.title %></p>
+
+<% if current_user && current_user.pledges.exists?(project_id: @project.id) %>
+  you backed this
+<% end %>
 <p class="pdescription"><%= @project.description %></p>
 <p class="pstardate"><%= @project.startdate %></p>
 <p class="pfinishdate"><%= @project.finishdate %></p>
-<strong><p id= "earned<%= @project.id %>">$<%= @project.pledges.sum(:amount)  %></p>pledged of $<%= @project.goal%> goal</strong>
+
+<% newtime = @project.startdate > DateTime.now() ? @project.startdate : DateTime.now()%>
+<p><strong>Days left: <%= ((@project.finishdate - newtime)/1.day).round %><strong></p>
+<strong>Project TotalPledged : <p id= "earned<%= @project.id %>"><%= @project.pledges.sum(:amount)  %></p></strong>
 <br>
 <% @project.rewards.each do |reward| %>
 <fieldset class="reward fieldset">
