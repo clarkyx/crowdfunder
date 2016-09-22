@@ -1,5 +1,4 @@
-$(document).on('ready turbolinks:load', function(){
-
+$(document).on('turbolinks:load', function(){
   $("button").click( function(e){
     e.preventDefault;
     var idbutton = $(this).attr("id").split("|")[0];
