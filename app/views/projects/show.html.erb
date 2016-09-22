@@ -1,13 +1,8 @@
-<% if flash[:notice] %>
-<div class="notice"><%= flash[:notice] %></div>
-<% end %>
-
 <p class="ptitle"><%= @project.title %></p>
 <p class="pdescription"><%= @project.description %></p>
-<p class="pgoal"><%= @project.goal %></p>
 <p class="pstardate"><%= @project.startdate %></p>
 <p class="pfinishdate"><%= @project.finishdate %></p>
-<strong>Project TotalPledged : <p id= "earned<%= @project.id %>"><%= @project.pledges.sum(:amount)  %></p></strong>
+<strong><p id= "earned<%= @project.id %>">$<%= @project.pledges.sum(:amount)  %></p>pledged of $<%= @project.goal%> goal</strong>
 <br>
 <% @project.rewards.each do |reward| %>
 <fieldset class="reward fieldset">
