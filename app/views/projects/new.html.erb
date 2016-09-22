@@ -1,0 +1,40 @@
+<%= form_for([@user, @project]) do |f|%>
+  <div class="field">
+    <%= f.label :title %></br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %></br>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :deadline %></br>
+    <%= f.datetime_field :deadline %>
+  </div>
+
+  <div class="field">
+    <%= f.label :goal %></br>
+    <%= f.number_field :goal %></br></br>
+  </div>
+
+  <%= f.fields_for :rewards, [Reward.new] do |builder| %>
+    <fieldset>
+      <div class="field">
+        <%= builder.label :title, "Reward Title" %></br>
+        <%= builder.text_field :title%>
+      </div>
+      <div class="field">
+        <%= builder.label :description, "Reward Description" %></br>
+        <%= builder.text_field :description%>
+      </div>
+      <div class="field">
+        <%= builder.label :price, "Reward Price" %></br>
+        <%= builder.text_field :price%>
+      </div>
+    </fieldset>
+  <% end %>
+
+</br><%= f.submit %>
+<% end %>

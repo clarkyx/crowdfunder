@@ -1,1 +1,8 @@
 <h1> Hi Clark </h1>
+<% @projects.each do |project| %>
+  <p>Project Title : <%= project.title %></p>
+  <p>Project Description : <%= project.description %></p>
+  <p>Project Goal : <%= project.goal %></p>
+  <p>Project Deadline : <%= project.deadline %></p>
+  <br>
+<% end %>
