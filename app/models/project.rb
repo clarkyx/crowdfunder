@@ -4,7 +4,9 @@ class Project < ApplicationRecord
   has_many :pledges
   has_many :users, through: :pledges
   has_many :rewards, inverse_of: :project
+  has_many :tags, inverse_of: :project
   accepts_nested_attributes_for :rewards, allow_destroy: true
+  accepts_nested_attributes_for :tags, allow_destroy: true
 
   validates :startdate, presence: true
   validates :finishdate, presence: true

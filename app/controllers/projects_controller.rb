@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @project.rewards.build
+    @project.tags.build
 
     @reward = Reward.new
     @category = Category.all
@@ -37,7 +38,8 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:title, :description, :startdate,
     :finishdate, :goal,:category_id, rewards_attributes:
-    [:title, :description, :price, :_destroy])
+    [:description, :price, :_destroy],
+    tags_attributes:[:title, :_destroy])
   end
 
 
