@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(version: 20160922015258) do
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "deadline"
+    t.datetime "startdate"
+    t.datetime "finishdate"
     t.integer  "goal"
     t.integer  "category_id"
     t.integer  "user_id"
@@ -38,7 +39,6 @@ ActiveRecord::Schema.define(version: 20160922015258) do
   end
 
   create_table "rewards", force: :cascade do |t|
-    t.string   "title"
     t.string   "description"
     t.integer  "price"
     t.integer  "project_id"

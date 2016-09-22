@@ -2,10 +2,18 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @pledges = Pledge.all
+    @rewards = Reward.all
+  end
+
+  def show
+    @project = Project.find_by(id: params[:id])
   end
 
   def new
     @project = Project.new
+    @project.rewards.build
+
     @reward = Reward.new
     @category = Category.all
   end
@@ -25,8 +33,9 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :deadline,
-    :goal,:category_id, rewards_attributes: [:title, :description, :price])
+    params.require(:project).permit(:title, :description, :startdate,
+    :finishdate, :goal,:category_id, rewards_attributes:
+    [:title, :description, :price, :_destroy])
   end
 
 

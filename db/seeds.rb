@@ -12,6 +12,6 @@ Pledge.destroy_all
 tom = User.create(name:"tom", email:"what@gmail.com",password_digest:"123")
 bob = User.create(name:"bob", email:"what@gmail.com",password_digest:"123")
 cloth = Category.create(title:'cloth')
-tomsproject = Project.create!(title:"project1", description:"project1", deadline: Time.now, goal: 200, user_id: tom.id, category_id: cloth.id)
-bobproject = Project.create!(title:"project2", description:"project2", deadline: Time.now, goal: 200, user_id: bob.id, category_id: cloth.id)
+tomsproject = Project.create!(title:"project1", description:"project1", startdate: Time.now, finishdate: Time.now + 2.days, goal: 200, user_id: tom.id, category_id: cloth.id)
+bobproject = Project.create!(title:"project2", description:"project2", startdate: Time.now, finishdate: Time.now + 2.days, goal: 200, user_id: bob.id, category_id: cloth.id)
 tompledgeproject2 = Pledge.create(user_id:tom.id, project_id:bobproject.id, amount:10)
