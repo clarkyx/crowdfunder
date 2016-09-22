@@ -2,6 +2,9 @@
   <% @projects.each do |project| %>
    <% if project.user_id != current_user.id %>
       <p class="ptitle"><%= link_to project.title, project %></p>
+      <% if current_user.pledges.exists?(project_id: project.id) %>
+        you backed this
+      <% end %>
       <p class="pdescription"><%= project.description %></p>
    <% end %>
   <% end %>
