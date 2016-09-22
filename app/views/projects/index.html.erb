@@ -1,5 +1,4 @@
 <% @projects.each do |project| %>
-<p>Project id : <%= project.id %></p>
   <p>Project Title : <%= project.title %></p>
   <p>Project Description : <%= project.description %></p>
   <p>Project Goal : <%= project.goal %></p>
@@ -8,10 +7,11 @@
   <strong>Project TotalPledged : <p id= "earned<%= project.id %>"><%= project.pledges.sum(:amount)  %></p></strong>
   <br>
   <% project.rewards.each do |reward| %>
+  <fieldset class="reward fieldset">
     <% if current_user %>
-      |<%= project.id %>|
       <button type="button" name="reward" class="<%= current_user.id %>" id= "<%= reward.id %>|<%= project.id %>">pledge <%= reward.price %></button>
     <% end %>
     <p>Description <%= reward.description %></p>
+  </fieldset>
   <% end %>
 <% end %>

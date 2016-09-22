@@ -1,8 +1,8 @@
 $(function(){
-  $("button").on('click', function(e){
+  $("button").click(function(e){
     e.preventDefault;
     var idbutton = $(this).attr("id").split("|")[0];
-    var project = $(this).attr("id").split("|")[0];
+    var project = $(this).attr("id").split("|")[1];
     $.ajax({
       url: '/users/' + $(this).attr("class") + '/pledges',
       method: 'post',
