@@ -7,9 +7,11 @@
 <br>
 <% @project.rewards.each do |reward| %>
 <fieldset class="reward fieldset">
-  <% if current_user %>
+  <p>Description: <%= reward.description %></p>
+  <% if current_user && @project.user_id != current_user.id %>
     <button type="button" name="reward" class="<%= current_user.id %>" id= "<%= reward.id %>|<%= @project.id %>">pledge <%= reward.price %></button>
+  <% else %>
+    Reward Price: <%= reward.price %>
   <% end %>
-  <p>Description <%= reward.description %></p>
 </fieldset>
 <% end %>
