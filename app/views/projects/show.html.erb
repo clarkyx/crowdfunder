@@ -7,9 +7,10 @@
 <p class="pstardate"><%= @project.startdate %></p>
 <p class="pfinishdate"><%= @project.finishdate %></p>
 
+
 <% newtime = @project.startdate > DateTime.now() ? @project.startdate : DateTime.now()%>
 <p><strong>Days left: <%= ((@project.finishdate - newtime)/1.day).round %><strong></p>
-<strong>Project TotalPledged : <p id= "earned<%= @project.id %>"><%= @project.pledges.sum(:amount)  %></p></strong>
+<strong><p id= "earned<%= @project.id %>">$<%= @project.pledges.sum(:amount)  %></p>pledged of $<%= @project.goal%> goal</strong>
 <br>
 <% @project.rewards.each do |reward| %>
 <fieldset class="reward fieldset">
