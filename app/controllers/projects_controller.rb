@@ -22,9 +22,11 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user_id = current_user.id
 
-    if @project.save!
+    if @project.save
       redirect_to root_url, notice: 'Project created!'
     else
+      @category = Category.all
+      flash[:notice] = "Enter valid date"
       render :new
     end
   end

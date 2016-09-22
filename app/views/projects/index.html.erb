@@ -1,14 +1,21 @@
-<% @projects.each do |project| %>
- <% if project.user_id != current_user.id %>
+<% if current_user %>
+  <% @projects.each do |project| %>
+   <% if project.user_id != current_user.id %>
+      <p class="ptitle"><%= link_to project.title, project %></p>
+      <p class="pdescription"><%= project.description %></p>
+   <% end %>
+  <% end %>
+  </br>
+  <h3>My Projects</h3>
+  <% @projects.each do |project| %>
+   <% if project.user_id == current_user.id %>
+      <p class="ptitle"><%= link_to project.title, project %></p>
+      <p class="pdescription"><%= project.description %></p>
+   <% end %>
+  <% end %>
+<% else %>
+  <% @projects.each do |project| %>
     <p class="ptitle"><%= link_to project.title, project %></p>
     <p class="pdescription"><%= project.description %></p>
- <% end %>
-<% end %>
-</br>
-<h3>My Projects</h3>
-<% @projects.each do |project| %>
- <% if project.user_id == current_user.id %>
-    <p class="ptitle"><%= link_to project.title, project %></p>
-    <p class="pdescription"><%= project.description %></p>
- <% end %>
+  <% end %>
 <% end %>
