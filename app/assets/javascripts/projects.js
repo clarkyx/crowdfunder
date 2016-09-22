@@ -1,5 +1,6 @@
-$(function(){
-  $("button").click(function(e){
+$(document).on('ready turbolinks:load', function(){
+
+  $("button").click( function(e){
     e.preventDefault;
     var idbutton = $(this).attr("id").split("|")[0];
     var project = $(this).attr("id").split("|")[1];
