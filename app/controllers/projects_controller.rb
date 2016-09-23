@@ -1,9 +1,20 @@
 class ProjectsController < ApplicationController
 
   def index
+    @categories = Category.all
+    @tags = Tag.all
     @projects = Project.all
     @pledges = Pledge.all
     @rewards = Reward.all
+
+    respond_to do |format|
+      format.html
+      if params["category"] == 'all'
+        format.json {render json: @projects }
+      else
+        format.json {render json: @projects.where(category_id: params["category"]) }
+      end
+    end
   end
 
   def show
