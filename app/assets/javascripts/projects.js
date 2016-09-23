@@ -1,4 +1,25 @@
 $(document).on('turbolinks:load', function(){
+  var responsefunction = function(response){
+    var outdiv = $('<div>');
+    var projectinfo = response.projectinfo;
+    var pledgedinfo = response.pledgedinfo;
+    projectinfo.forEach(function(project){
+      var newdiv = $('<p>');
+      var newa = $('<a>');
+      newa.attr('href', 'http://localhost:3000/projects/' + project.id);
+      newa.text(project.title);
+      newdiv.text(project.description);
+
+      outdiv.append(newa);
+      if(pledgedinfo && pledgedinfo[project.id] == 'true'){
+        var newp = $('<p>');
+        newp.text('you backed this project');
+        outdiv.append(newp);
+      }
+      outdiv.append(newdiv);
+    });
+    $('.projects').html(outdiv);
+  }
   $(".categorybuttons").delegate('button','click',function(e){
     var category = $(this).attr('value');
     if(!category){
@@ -9,20 +30,7 @@ $(document).on('turbolinks:load', function(){
       method: 'get',
       dataType: 'json',
       data: {'category':category}
-    }).done(function(response){
-      var outdiv = $('<div>');
-      response.forEach(function(project){
-        var newdiv = $('<div>');
-        var newspan = $('<span>');
-        newspan.attr('id', project.id);
-        newspan.text('Project Title: ' + project.title);
-        newdiv.text(project.description);
-
-        outdiv.append(newspan);
-        outdiv.append(newdiv);
-      });
-      $('.projects').html(outdiv);
-    });
+    }).done(responsefunction);
   });
 
   $("button").click(function(e){
@@ -39,5 +47,18 @@ $(document).on('turbolinks:load', function(){
         parseInt($('p#earned' + response.projectid).text()) +
         parseInt(response.amount));
     });
+  });
+
+  $("#searchbar").submit(function(event){
+    event.preventDefault;
+    if($("input:first").val()){
+      $.ajax({
+        url: '/projects',
+        method: 'get',
+        dataType: 'json',
+        data: {'taginfo': $("input:first").val() }
+      }).done(responsefunction);
+    };
+    return false;
   });
 });

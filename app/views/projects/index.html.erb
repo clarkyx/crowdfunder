@@ -1,22 +1,36 @@
+<br>
 <div class="categorybuttons">
-  <button clsss= "category" type="button" name="button" value="">All</button>|
+  <button clsss= "category" type="button" name="button" value="">All</button><bn>
   <% @categories.each do |category| %>
-    <button clsss= "category" type="button" name="button" value="<%= category.id %>"><%= category.title.capitalize %></button>|
+    <button clsss= "category" type="button" name="button" value="<%= category.id %>"><%= category.title.capitalize %></button><bn>
   <% end %>
 </div>
+<br>
+<form id="searchbar" action="/html" method="post">
+  <label for="q">Search Tag:</label>
+  <input id="q" name="q" type="text" />
+  <input name="commit" type="submit" value="Search">
+</form>
 
-<div class="projects"></div>
+<br>
+<br>
+<div class="projects">
+  <% @projects.each do |project| %>
+    <% if current_user && project.user_id != current_user.id%>
+      <a href="http://localhost:3000/projects/<%= project.id %>"><%= project.title %></a>
+      <% if current_user.pledges.exists?(project_id: project.id) %>
+        <p>you backed this project</p>
+      <% end %>
+      <p><%= project.description %></p>
+    <% else %>
+      <a href="http://localhost:3000/projects/<%= project.id %>"><%= project.title %></a>
+      <p><%= project.description %></p>
+    <% end %>
+  <% end %>
+</div>
+<br>
 
 <% if current_user %>
-  <% @projects.each do |project| %>
-   <% if project.user_id != current_user.id %>
-      <p class="ptitle"><%= link_to project.title, project %></p>
-      <% if current_user.pledges.exists?(project_id: project.id) %>
-        you backed this
-      <% end %>
-      <p class="pdescription"><%= project.description %></p>
-   <% end %>
-  <% end %>
   </br>
   <h3>My Projects</h3>
   <% @projects.each do |project| %>
@@ -26,9 +40,4 @@
    <% end %>
   <% end %>
   <p>My Money Pledged: <%= current_user.pledges.sum(:amount) %></p>
-<% else %>
-  <% @projects.each do |project| %>
-    <p class="ptitle"><%= link_to project.title, project %></p>
-    <p class="pdescription"><%= project.description %></p>
-  <% end %>
 <% end %>
