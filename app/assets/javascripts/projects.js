@@ -66,11 +66,33 @@ $(document).on('turbolinks:load', function(){
     event.preventDefault;
     if($("#rd").val()){
       $.ajax({
-        url: '/users/' + $('#messagereview').dataset.user + '/messages',
+        url: '/users/' + $('#rd').data("user") + '/messages',
         method: 'post',
         dataType: 'json',
-        data: {'taginfo': $("input:first").val() }
-      }).done(responsefunction);
+        data: {'infomation': $("textarea:first").val(),
+              'projectinfo' : $('#rd').attr("data-project")}
+      }).done(function(response){
+        console.log(response)
+        var newp = $('<p>');
+        newp.text(response.infomation);
+        $('.message_box').append(newp);
+      });
+    };
+    return false;
+  });
+
+  $('#messagereviewuser').submit(function(event){
+    event.preventDefault;
+    if($("#rd").val()){
+      $.ajax({
+        url: '/users/' + $('#rdr').data("user") + '/messages',
+        method: 'post',
+        dataType: 'json',
+        data: {'infomation': $("#rdr").val(),
+              'userinfo' : $('#rdr').attr("data-user")}
+      }).done(function(response){
+        console.log('nice');
+      });
     };
     return false;
   });

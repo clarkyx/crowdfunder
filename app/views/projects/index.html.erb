@@ -39,5 +39,12 @@
       <p class="pdescription"><%= project.description %></p>
    <% end %>
   <% end %>
+  <h3>My Messages</h3>
+  <div class="mymessage">
+    <% @messages.each do |message| %>
+      <p>From<%= message.user.name %></p>
+      <p><%= message.infomation %></p>
+    <% end %>
+  </div>
   <p>My Money Pledged: <%= current_user.pledges.sum(:amount) %></p>
 <% end %>

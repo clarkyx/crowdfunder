@@ -25,12 +25,26 @@
 </fieldset>
 <% end %>
 <br><br><br>
+
+<div class="message_box">
+  <% @messagesprojects.each do |message|%>
+    <p>Message: <%= message.infomation %></p>
+  <% end %>
+</div>
+
 <% if !current_user || @project.user_id == current_user.id %>
 <% else %>
   <fieldset>
-    <form id="messagereview" action="index.html" method="post" data-project="<%= @project.id%>" data-user="<%= current_user.id%>">
+    <form id="messagereview" action="index.html" method="post">
       Message:<br>
-      <textarea id="rd" name="message"></textarea>
+      <textarea id="rd" name="message" data-project=<%= @project.id%> data-user=<%= @project.user_id%>></textarea>
+      <input type="submit" name="name">
+    </form>
+  </fieldset>
+  <fieldset>
+    <form id="messagereviewuser" action="index.html" method="post">
+      Message:Owner<br>
+      <textarea id="rdr" name="message" data-project=<%= @project.id%> data-user=<%= @project.user_id%>></textarea>
       <input type="submit" name="name">
     </form>
   </fieldset>

@@ -6,6 +6,9 @@ class ProjectsController < ApplicationController
     @projects = Project.all
     @pledges = Pledge.all
     @rewards = Reward.all
+    if current_user
+      @messages = Message.where(messagetoid: current_user.id, messagetotype: 'user');
+    end
     @availableprojects = {}
     @fitprojects = []
 
@@ -71,6 +74,10 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    puts @project.id
+
+    @messagesprojects = Message.where(messagetoid: @project.id, messagetotype: 'project')
+    puts @messagesprojects
   end
 
   def new
