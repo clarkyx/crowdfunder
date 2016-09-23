@@ -22,7 +22,7 @@
         <p>you backed this project</p>
       <% end %>
       <p><%= project.description %></p>
-    <% else %>
+    <% elsif !current_user %>
       <a href="http://localhost:3000/projects/<%= project.id %>"><%= project.title %></a>
       <p><%= project.description %></p>
     <% end %>

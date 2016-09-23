@@ -1,11 +1,12 @@
 <p class="ptitle"><%= @project.title %></p>
 
 <% if current_user && current_user.pledges.exists?(project_id: @project.id) %>
-  you backed this
+  you backed this project
 <% end %>
+<p class="projectowner">Project Owner<%= @project.user.name %></p>
 <p class="pdescription"><%= @project.description %></p>
-<p class="pstardate"><%= @project.startdate %></p>
-<p class="pfinishdate"><%= @project.finishdate %></p>
+<p class="pstardate">Start Date:   <%= @project.startdate %></p>
+<p class="pfinishdate">Finish Date:   <%= @project.finishdate %></p>
 
 
 <% newtime = @project.startdate > DateTime.now() ? @project.startdate : DateTime.now()%>
@@ -22,4 +23,15 @@
     Reward Price: <%= reward.price %>
   <% end %>
 </fieldset>
+<% end %>
+<br><br><br>
+<% if !current_user || @project.user_id == current_user.id %>
+<% else %>
+  <fieldset>
+    <form id="messagereview" action="index.html" method="post" data-project="<%= @project.id%>" data-user="<%= current_user.id%>">
+      Message:<br>
+      <textarea id="rd" name="message"></textarea>
+      <input type="submit" name="name">
+    </form>
+  </fieldset>
 <% end %>

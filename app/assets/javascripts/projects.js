@@ -61,4 +61,17 @@ $(document).on('turbolinks:load', function(){
     };
     return false;
   });
+
+  $('#messagereview').submit(function(event){
+    event.preventDefault;
+    if($("#rd").val()){
+      $.ajax({
+        url: '/users/' + $('#messagereview').dataset.user + '/messages',
+        method: 'post',
+        dataType: 'json',
+        data: {'taginfo': $("input:first").val() }
+      }).done(responsefunction);
+    };
+    return false;
+  });
 });

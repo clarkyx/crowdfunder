@@ -66,10 +66,6 @@ class ProjectsController < ApplicationController
       end
     end
 
-    if current_user
-      @projects = @projects.where.not(user_id: current_user.id)
-    end
-
   end
 
 
