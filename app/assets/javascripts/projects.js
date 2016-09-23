@@ -91,7 +91,8 @@ $(document).on('turbolinks:load', function(){
         data: {'infomation': $("#rdr").val(),
               'userinfo' : $('#rdr').attr("data-user")}
       }).done(function(response){
-        console.log('nice');
+        alert('Message Sent');
+        $("#rdr").val('');
       });
     };
     return false;
