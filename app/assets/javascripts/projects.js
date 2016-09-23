@@ -83,7 +83,7 @@ $(document).on('turbolinks:load', function(){
 
   $('#messagereviewuser').submit(function(event){
     event.preventDefault;
-    if($("#rd").val()){
+    if($("#rdr").val()){
       $.ajax({
         url: '/users/' + $('#rdr').data("user") + '/messages',
         method: 'post',

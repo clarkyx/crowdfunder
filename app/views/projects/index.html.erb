@@ -42,7 +42,7 @@
   <h3>My Messages</h3>
   <div class="mymessage">
     <% @messages.each do |message| %>
-      <p>From<%= message.user.name %></p>
+      <p>From: <%= message.user.name %></p>
       <p><%= message.infomation %></p>
     <% end %>
   </div>
