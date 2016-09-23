@@ -1,45 +1,52 @@
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="errors_messages">
-      <h2>Form is invalid!</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-        <li><% message %>
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">Crowdfunder</div>
+    <%= form_for @user do |f| %>
+      <% if @user.errors.any? %>
+        <div class="errors_messages">
+          <h2>Form is invalid!</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><% message %>
+              <% end %>
+            </ul>
+          </div>
           <% end %>
+
+        <ul class="form1">
+          <div class="form-group">
+            <%= f.label '' do %>
+            Name<span class="required">**********************</span>
+            <% end %>
+            <%= f.text_field :name %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label '' do %>
+            Email<span class="required">**********************</span>
+            <% end %>
+            <%= f.email_field :email %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label '' do %>
+            Password<span class="required">*****************</span>
+            <% end %>
+            <%= f.password_field :password %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label '' do %>
+            Password confirmation<span class="required">*</span>
+            <% end %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit %>
+          </div>
         </ul>
-      </div>
-      <% end %>
 
-    <ul class="form1">
-      <li>
-        <%= f.label '' do %>
-        Name<span class="required">*</span>
-        <% end %>
-        <%= f.text_field :name %>
-      </li>
+    <% end %>
 
-      <li>
-        <%= f.label '' do %>
-        Email<span class="required">*</span>
-        <% end %>
-        <%= f.email_field :email %>
-      </li>
-
-      <li>
-        <%= f.label '' do %>
-        Password<span class="required">*</span>
-        <% end %>
-        <%= f.password_field :password %>
-      </li>
-
-      <li>
-        <%= f.label '' do %>
-        Password confirmation<span class="required">*</span>
-        <% end %>
-        <%= f.password_field :password_confirmation %>
-      </li>
-
-      <li><%= f.submit %></li>
-    </ul>
-
-<% end %>
+  </div>
+</div>
