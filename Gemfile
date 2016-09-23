@@ -30,6 +30,8 @@ gem 'cocoon'
 gem 'haml'
 gem 'sorcery'
 
+gem "bootstrap-sass"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

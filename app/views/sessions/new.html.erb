@@ -1,20 +1,26 @@
-<%= form_tag sessions_path do %>
- <ul class="form1">
-   <li>
-     <%= label_tag '' do %>
-       Email<span class="required">*</span>
-     <% end %>
-     <%= email_field_tag :email %>
-   </li>
-
-  <li>
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">Crowdfunder</div>
+  <%= form_tag sessions_path do %>
+   <ul class="form1">
+     <div class="form-group">
        <%= label_tag '' do %>
-         Password<span class="required">*</span>
+         Email<span class="required">******</span>
        <% end %>
-       <%= password_field_tag :password %>
-  </li>
+       <%= email_field_tag :email %>
+     <div>
+
+    <div class="form-group">
+         <%= label_tag '' do %>
+           Password<span class="required">*</span>
+         <% end %>
+         <%= password_field_tag :password %>
+    </div>
 
 
-    <li><%= submit_tag "Log in" %></li>
-  </ul>
-  <% end %>
+      <div class="form-group">
+        <%= submit_tag "Log in" %>
+      </div>
+    </ul>
+    <% end %>
+  </div>
+</div>
