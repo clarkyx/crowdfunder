@@ -1,22 +1,22 @@
-<p class="ptitle"><%= @project.title %></p>
+<h3 class="ptitle"><%= @project.title %></h3>
 
 <% if current_user && current_user.pledges.exists?(project_id: @project.id) %>
   you backed this project
 <% end %>
-<p class="projectowner">Project Owner<%= @project.user.name %></p>
+<p class="projectowner">Created by: <%= @project.user.name %></p>
 <p class="pdescription"><%= @project.description %></p>
 <p class="pstardate">Start Date:   <%= @project.startdate %></p>
-<p class="pfinishdate">Finish Date:   <%= @project.finishdate %></p>
+
 
 
 <% newtime = @project.startdate > DateTime.now() ? @project.startdate : DateTime.now()%>
 <p><strong>Days left: <%= ((@project.finishdate - newtime)/1.day).round %><strong></p>
-<strong>$<p id= "earned<%= @project.id %>"><%= @project.pledges.sum(:amount)  %></p>pledged of $<%= @project.goal%> goal</strong>
+<strong>$<p id= "earned<%= @project.id %>"><%= @project.pledges.sum(:amount)  %></p> pledged of $<%= @project.goal%> goal</strong>
 <br>
 <fieldset class="tag fieldset">Tags: <%= @project.tags.map{|tag| tag.title}.join('#') %></fieldset>
 <% @project.rewards.each do |reward| %>
 <fieldset class="reward fieldset">
-  <p>Description: <%= reward.description %></p>
+  <p>Reward description: <%= reward.description %></p>
   <% if current_user && @project.user_id != current_user.id %>
     <button type="button" name="reward" class="<%= current_user.id %>" id= "<%= reward.id %>|<%= @project.id %>">pledge <%= reward.price %></button>
   <% else %>
@@ -28,7 +28,7 @@
 
 <div class="message_box">
   <% @messagesprojects.each do |message|%>
-    <p>Message: <%= message.infomation %></p>
+    <p>Comment: <%= message.infomation %></p>
   <% end %>
 </div>
 
